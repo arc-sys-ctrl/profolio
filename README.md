@@ -22,3 +22,7 @@ Great for high performance and easy deployments.
 - **Animations**: Responsive Intersection Observer for scroll reveal.
 - **Theme**: Dark Mode (Premium).
 - **Responsive**: Fully optimized for mobile, tablet, and desktop.
+<<<<<<< HEAD
+=======
+>>>>>>> 5100b6c (Initial portfolio commit)
+>>>>>>> d81f30c (Force sync local portfolio)
