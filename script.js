@@ -55,13 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Form Submission (Demo)
+    // Form Submission (Using Formspree)
     const contactForm = document.getElementById('portfolio-contact');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! This is a demo. In a live environment, this would be sent to your email.');
-            contactForm.reset();
-        });
+        // No e.preventDefault() here to allow Formspree to handle the submission
+        // We can add a simple message for the user if needed, but Formspree has its own success page.
     }
 });
