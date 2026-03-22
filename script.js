@@ -55,10 +55,46 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Form Submission (Using Formspree)
+    // Form Submission (Using Unified API)
     const contactForm = document.getElementById('portfolio-contact');
     if (contactForm) {
-        // No e.preventDefault() here to allow Formspree to handle the submission
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = contactForm.querySelector('button');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            const formData = {
+                type: 'contact',
+                name: contactForm.querySelector('input[name="name"]').value,
+                email: contactForm.querySelector('input[name="_replyto"]').value,
+                message: contactForm.querySelector('textarea[name="message"]').value
+            };
+
+            try {
+                const response = await fetch('/api/notify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                
+                if (response.ok) {
+                    submitBtn.textContent = 'Message Sent!';
+                    contactForm.reset();
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }, 3000);
+                } else {
+                    throw new Error('Failed to send');
+                }
+            } catch (error) {
+                submitBtn.textContent = 'Error! Try again';
+                submitBtn.disabled = false;
+            }
+        });
     }
 
     // Visitor Notification Logic
@@ -79,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
+                        type: 'visitor',
                         location: locationStr,
                         details: detailsStr
                     })

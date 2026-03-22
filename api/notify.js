@@ -3,20 +3,27 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const { location, details } = req.body;
-  const message = `New Visitor: ${location}\nDetails: ${details}`;
+  const { type, location, details, name, email, message: userMessage } = req.body;
+  
+  let subject = 'Secret Visitor Alert';
+  let body = `New Visitor: ${location}\nDetails: ${details}`;
+  
+  if (type === 'contact') {
+    subject = 'New Portfolio Message!';
+    body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${userMessage}`;
+  }
 
   try {
     // Send to ntfy.sh with Email header
-    const topic = 'prince_david_portfolio_alerts_unique_id_99';
+    const topic = 'prince_david_portfolio_notifications_v2';
     await fetch(`https://ntfy.sh/${topic}`, {
       method: 'POST',
-      body: message,
+      body: body,
       headers: {
-        'Title': 'Secret Visitor Alert',
+        'Title': subject,
         'Email': 'princeinvents@gmail.com',
         'Priority': 'high',
-        'Tags': 'eyes,earth_africa'
+        'Tags': type === 'contact' ? 'email,envelope' : 'eyes,earth_africa'
       }
     });
 
