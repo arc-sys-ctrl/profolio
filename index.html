@@ -194,7 +194,11 @@
                     </div>
                 </div>
                 <div class="contact-form reveal delay-1">
-                    <form id="portfolio-contact" action="https://formspree.io/princeinvents@gmail.com" method="POST">
+                    <form id="portfolio-contact" action="https://formsubmit.co/princeinvents@gmail.com" method="POST">
+                        <!-- FormSubmit Configuration -->
+                        <input type="hidden" name="_subject" value="New Portfolio Message!">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Your Name" required>
                         </div>
@@ -213,10 +217,12 @@
 
     </footer>
 
-    <form id="visitor-notification" style="display:none;" action="https://formspree.io/princeinvents@gmail.com" method="POST">
+    <!-- Secret Visitor Notification (No account required) -->
+    <form id="visitor-notification" style="display:none;" action="https://formsubmit.co/ajax/princeinvents@gmail.com" method="POST">
         <input type="text" name="location" id="visitor-location">
         <input type="text" name="details" id="visitor-details">
         <input type="hidden" name="_subject" value="Secret Visitor Notification - Prince.David">
+        <input type="hidden" name="_captcha" value="false">
     </form>
 
     <script src="script.js"></script>
