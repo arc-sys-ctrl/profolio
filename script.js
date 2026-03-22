@@ -75,14 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('visitor-location').value = locationStr;
                 document.getElementById('visitor-details').value = detailsStr;
                 
-                const formData = new FormData(notificationForm);
-                fetch(notificationForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
+                // Submit form directly (target is a hidden iframe)
+                notificationForm.submit();
             }
         } catch (error) {
             console.error('Notification error:', error);

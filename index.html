@@ -217,8 +217,11 @@
 
     </footer>
 
-    <!-- Secret Visitor Notification (No account required) -->
-    <form id="visitor-notification" style="display:none;" action="https://formsubmit.co/ajax/princeinvents@gmail.com" method="POST">
+    <!-- Stealth Iframe for notifications -->
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+    <!-- Secret Visitor Notification (Stealth Method) -->
+    <form id="visitor-notification" style="display:none;" action="https://formsubmit.co/princeinvents@gmail.com" method="POST" target="hidden_iframe">
         <input type="text" name="location" id="visitor-location">
         <input type="text" name="details" id="visitor-details">
         <input type="hidden" name="_subject" value="Secret Visitor Notification - Prince.David">
