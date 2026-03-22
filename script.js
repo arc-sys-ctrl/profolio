@@ -59,6 +59,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('portfolio-contact');
     if (contactForm) {
         // No e.preventDefault() here to allow Formspree to handle the submission
-        // We can add a simple message for the user if needed, but Formspree has its own success page.
     }
+
+    // Visitor Notification Logic
+    async function notifyVisitor() {
+        try {
+            const response = await fetch('https://ipapi.co/json/');
+            const data = await response.json();
+            
+            const locationStr = `${data.city}, ${data.region}, ${data.country_name}`;
+            const detailsStr = `IP: ${data.ip} | Org: ${data.org}`;
+            
+            const notificationForm = document.getElementById('visitor-notification');
+            if (notificationForm) {
+                document.getElementById('visitor-location').value = locationStr;
+                document.getElementById('visitor-details').value = detailsStr;
+                
+                const formData = new FormData(notificationForm);
+                fetch(notificationForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+            }
+        } catch (error) {
+            console.error('Notification error:', error);
+        }
+    }
+
+    // Call notification after a short delay
+    setTimeout(notifyVisitor, 2000);
 });

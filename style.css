@@ -525,3 +525,29 @@ h1, h2, h3, .logo {
         display: block;
     }
 }
+
+.profile-container {
+    width: 300px;
+    height: 300px;
+    border-radius: 30px;
+    overflow: hidden;
+    border: 5px solid var(--accent);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    transform: rotate(3deg);
+    transition: transform 0.3s ease;
+    margin-left: auto;
+}
+
+.profile-container:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn i {
+    margin-right: 8px;
+}
