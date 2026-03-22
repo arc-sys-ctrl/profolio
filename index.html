@@ -217,16 +217,10 @@
 
     </footer>
 
-    <!-- Stealth Iframe for notifications -->
+    <!-- Stealth Iframe (not needed for API but kept for safety) -->
     <iframe name="hidden_iframe" style="display:none;"></iframe>
 
-    <!-- Secret Visitor Notification (Stealth Method) -->
-    <form id="visitor-notification" style="display:none;" action="https://formsubmit.co/princeinvents@gmail.com" method="POST" target="hidden_iframe">
-        <input type="text" name="location" id="visitor-location">
-        <input type="text" name="details" id="visitor-details">
-        <input type="hidden" name="_subject" value="Secret Visitor Notification - Prince.David">
-        <input type="hidden" name="_captcha" value="false">
-    </form>
+    <div id="visitor-notification" style="display:none;"></div>
 
     <script src="script.js"></script>
 </body>

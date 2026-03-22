@@ -72,11 +72,17 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const notificationForm = document.getElementById('visitor-notification');
             if (notificationForm) {
-                document.getElementById('visitor-location').value = locationStr;
-                document.getElementById('visitor-details').value = detailsStr;
-                
-                // Submit form directly (target is a hidden iframe)
-                notificationForm.submit();
+                // Use the new Vercel API instead of a hidden form
+                fetch('/api/notify', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        location: locationStr,
+                        details: detailsStr
+                    })
+                });
             }
         } catch (error) {
             console.error('Notification error:', error);
